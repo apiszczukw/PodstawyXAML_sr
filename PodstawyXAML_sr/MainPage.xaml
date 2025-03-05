@@ -8,7 +8,16 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button x:Name="OkBtn"></Button>
+    <Grid Background="#FFE1FFFE">
+        <Button Content="Zapisz" Margin="695,0,695,184" VerticalAlignment="Bottom" Background="#3311459A" HorizontalAlignment="Stretch" FontSize="42" Foreground="#FF0F1011" Height="145" Click="Button_Click"/>
+        <TextBox x:Name="imieTxt" Margin="113,142,1277,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="70" Background="#66FFFFFF" Foreground="{x:Null}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="113,84,0,0" TextWrapping="Wrap" Text="Imię" VerticalAlignment="Top" Height="61" Width="458" FontSize="40" Foreground="#FF322626"/>
+        <TextBox x:Name="nazwiskoTxt" Margin="113,275,1277,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="70" Background="#66FFFFFF" Foreground="{x:Null}"/>
+        <TextBlock Margin="113,217,1349,0" TextWrapping="Wrap" Text="Nazwisko" VerticalAlignment="Top" Height="61" FontSize="40" Foreground="#FF322626"/>
+        <TextBox x:Name="kierunekTxt" Margin="0,137,67,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="70" Background="#66FFFFFF" Foreground="{x:Null}" HorizontalAlignment="Right" Width="530"/>
+        <TextBlock Margin="0,79,139,0" TextWrapping="Wrap" Text="Kierunek" VerticalAlignment="Top" Height="61" FontSize="40" Foreground="#FF322626" HorizontalAlignment="Right" Width="458"/>
+        <TextBox x:Name="rokTxt" Margin="0,253,67,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="70" Background="#66FFFFFF" Foreground="{x:Null}" HorizontalAlignment="Right" Width="530"/>
+        <TextBlock Margin="0,195,139,0" TextWrapping="Wrap" Text="Rok" VerticalAlignment="Top" Height="61" FontSize="40" Foreground="#FF322626" HorizontalAlignment="Right" Width="458"/>
+        <CheckBox Content="CheckBox" Margin="520,540,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

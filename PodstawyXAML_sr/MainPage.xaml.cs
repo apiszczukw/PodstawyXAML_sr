@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,43 +27,32 @@ namespace PodstawyXAML_sr
         public MainPage()
         {
             this.InitializeComponent();
+        }
 
-            Osoba osoba = new Osoba();
-
-            List<Przedmiot> przedmioty = new List<Przedmiot>()
+		private async void Button_Click(object sender, RoutedEventArgs e)
+		{
+            Osoba osoba = new Osoba()
             {
-                new Przedmiot()
-                {
-                    Nazwa = "prawo",
-                    IleGodzin = 14
-                },
-                new Przedmiot()
-                {
-                    Nazwa = "finanse",
-                    IleGodzin = 20
-                },
-                new Przedmiot()
-                {
-                    Nazwa = "zarządzanie zasobami ludzkimi",
-                    IleGodzin = 8
-                }
+                Imie = imieTxt.Text,
+                Nazwisko = nazwiskoTxt.Text,
+                Kierunek = kierunekTxt.Text,
+                Rok = int.Parse(rokTxt.Text)
             };
-
-            osoba.Przedmioty = przedmioty;
-            osoba.Lp = 1;
-            osoba.Imie = "Natalia";
-            osoba.Nazwisko = "Bany";
-            osoba.Dojazd = "Tak";
-            osoba.Rok = 2011;
 
             var message = new ContentDialog()
             {
                 Title = "Powitanie",
-                Content = osoba.ToString(),
+                Content = $"{osoba.ToString()}\nKierunek: {osoba.Kierunek}\nRok: {osoba.Rok}",
                 CloseButtonText = "Zamknij"
             };
 
-            message.ShowAsync();
-        }
-    }
+            await message.ShowAsync();
+
+            var path = ApplicationData.Current.LocalFolder;
+
+            XmlHelper.SerializeToXml<Osoba>(osoba, path.Path + "\\osoby.xml");
+		}
+
+
+	}
 }

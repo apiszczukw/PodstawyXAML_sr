@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PodstawyXAML_sr.Klasy
 {
-	internal class Osoba
+	public class Osoba
 	{
 		public int Lp;
 
