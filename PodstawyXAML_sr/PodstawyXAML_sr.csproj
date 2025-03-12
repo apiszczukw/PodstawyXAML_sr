@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Klasy\Osoba.cs" />
     <Compile Include="Klasy\Przedmiot.cs" />
+    <Compile Include="Klasy\Uczestnicy.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

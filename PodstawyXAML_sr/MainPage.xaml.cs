@@ -24,6 +24,8 @@ namespace PodstawyXAML_sr
     /// </summary>
     public sealed partial class MainPage : Page
     {
+		Uczestnicy uczestnicy = new Uczestnicy();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -31,28 +33,46 @@ namespace PodstawyXAML_sr
 
 		private async void Button_Click(object sender, RoutedEventArgs e)
 		{
-            Osoba osoba = new Osoba()
-            {
-                Imie = imieTxt.Text,
-                Nazwisko = nazwiskoTxt.Text,
-                Kierunek = kierunekTxt.Text,
-                Rok = int.Parse(rokTxt.Text)
-            };
+			Osoba osoba = new Osoba()
+			{
+				Imie = imieTxt.Text,
+				Nazwisko = nazwiskoTxt.Text,
+				Kierunek = kierunekTxt.Text,
+				Rok = int.Parse(rokTxt.Text),
+				Przedmioty = new List<Przedmiot>()
+				{
+					new Przedmiot() { Nazwa = "Analiza matematyczna", IleGodzin = 2 },
+					new Przedmiot() { Nazwa = "Programowanie", IleGodzin = 4 },
+				}
+			};
 
-            var message = new ContentDialog()
-            {
-                Title = "Powitanie",
-                Content = $"{osoba.ToString()}\nKierunek: {osoba.Kierunek}\nRok: {osoba.Rok}",
-                CloseButtonText = "Zamknij"
-            };
+			var message = new ContentDialog()
+			{
+				Title = "Pomyślnie zapisano osobę",
+				Content = $"{osoba.ToString()}\nKierunek: {osoba.Kierunek}\nRok: {osoba.Rok}",
+				CloseButtonText = "Zamknij"
+			};
 
-            await message.ShowAsync();
+			await message.ShowAsync();
 
-            var path = ApplicationData.Current.LocalFolder;
+			uczestnicy.osoby.Add(osoba);
 
-            XmlHelper.SerializeToXml<Osoba>(osoba, path.Path + "\\osoby.xml");
+			CleanFields();
 		}
 
+		private void CleanFields()
+		{
+			imieTxt.Text = "";
+			nazwiskoTxt.Text = "";
+			kierunekTxt.Text = "";
+			rokTxt.Text = "";
+		}
 
+		private void XMLBtn_Click(object sender, RoutedEventArgs e)
+		{
+			var path = ApplicationData.Current.LocalFolder.Path;
+
+			XmlHelper.SerializeToXml<Uczestnicy>(uczestnicy, path + "\\osoby.xml");
+		}
 	}
 }

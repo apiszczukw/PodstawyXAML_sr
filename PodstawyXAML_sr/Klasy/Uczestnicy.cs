@@ -7,12 +7,10 @@ using System.Xml.Serialization;
 
 namespace PodstawyXAML_sr.Klasy
 {
-	public class Przedmiot
-	{
-		[XmlAttribute("nazwa")]
-		public string Nazwa;
-
-		[XmlAttribute("ileGodzin")]
-		public int IleGodzin;
+	[XmlRoot("uczestnicy")]
+    public class Uczestnicy
+    {
+		[XmlElement("osoba")]
+		public List<Osoba> osoby = new List<Osoba>();
 	}
 }
